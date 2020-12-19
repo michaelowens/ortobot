@@ -1,7 +1,9 @@
-'use strict';
-
-module.exports = web;
+module.exports = web
 
 function web() {
-    // TODO
+  // TODO
+}
+
+if (require.main === module) {
+  web()
 }

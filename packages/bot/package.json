@@ -18,9 +18,13 @@
     "access": "public"
   },
   "scripts": {
-    "test": "echo \"Error: run tests from root\" && exit 1"
+    "start": "node lib/bot.js"
   },
   "dependencies": {
-    "node-cache": "^5.1.2"
+    "awilix": "^4.3.1",
+    "bluebird": "^3.7.2",
+    "dank-twitch-irc": "^4.2.0",
+    "node-cache": "^5.1.2",
+    "redis": "^3.0.2"
   }
 }
