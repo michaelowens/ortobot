@@ -1,11 +1,8 @@
 module.exports = {
   bot: {
-    admins: ['xikeon'],
-    debug: false,
-    name: 'Xikbot',
-    oauth: 'oauth:',
+    name: 'xikbot',
+    oauth: 'oauth:***REMOVED***',
     channel: 'xikeon',
-    connections: 1,
   },
-  plugins: {},
+  modules: ['ibai'],
 }
