@@ -42,7 +42,7 @@ module.exports = class ChatService {
    * @param {PrivmsgMessage} msg
    */
   handleMessage(msg) {
-    console.log(msg.displayName, msg.messageText)
+    // console.log(msg.displayName, msg.messageText)
 
     const data = {
       command: null,

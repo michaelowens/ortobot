@@ -12,7 +12,7 @@ module.exports = class IbaiModule {
   }
 
   async onMessage(data) {
-    if (data.message.match(/^iba+i+$/i)) {
+    if (data.message.match(/^[l|i]ba+[l|i]+$/i)) {
       if (typeof this.timeouts[data.user] === 'undefined') {
         this.timeouts[data.user] = 1
       } else {
