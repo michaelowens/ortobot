@@ -5,7 +5,7 @@ module.exports = class IbaiModule {
     this.events = {
       message: this.onMessage,
     }
-    this.timeouts = {}
+    this.timeouts = {} // TODO: move to database
     console.log('IbaiModule loaded!')
     // console.log('Has module?', modules.has('ibaiModule'))
     // console.log('Has module?', modules.has('something'))
