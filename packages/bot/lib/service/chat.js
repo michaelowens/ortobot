@@ -48,8 +48,10 @@ module.exports = class ChatService {
       command: null,
       channel: msg.channelName,
       message: msg.messageText,
+      messageID: msg.messageID,
       user: msg.senderUsername,
       displayName: msg.displayName, // new User()
+      isMod: msg.isMod,
     }
     this.events.emit('message', data)
 

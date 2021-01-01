@@ -25,7 +25,7 @@ module.exports = () => {
         await container.resolve('modules')
         resolve(container)
       })
-      .on('error', () => {
+      .on('error', (e) => {
         reject(e)
       })
   })

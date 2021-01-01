@@ -1,8 +1,5 @@
-// TODO: Write modulesService
 // This will take care of preparing modules
-// - bind event handlers to class instance scope
-// - handle enabling/disabling modules
-// - handle configuration changes (redis PUB/SUB)
+// TODO: handle configuration changes (redis PUB/SUB)
 
 const { Lifetime } = require('awilix')
 
@@ -35,6 +32,7 @@ module.exports = class ModulesService {
       if (!name.endsWith('Module')) continue
       const mod = this.container.resolve(name)
       this.enableModule(mod)
+      console.log(mod.constructor.name, 'loaded!')
     }
   }
 
@@ -45,9 +43,9 @@ module.exports = class ModulesService {
   enableModule(mod) {
     // Bind each event to the current class instance
     // This will allow us to add event handlers without .bind(this)
+    // TODO: should not do this again when re-enabling modules
     for (let event in mod.events) {
       mod.events[event] = mod.events[event].bind(mod)
-
       this.events.on(event, mod.events[event])
     }
 
