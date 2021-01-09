@@ -15,9 +15,10 @@ npm run serve
 npm run build
 ```
 
-### SSR version
+### Run on server
 ```
-npm run ssr
+NODE_ENV=production npm run build
+npm run server
 ```
 
 ### Lints and fixes files
