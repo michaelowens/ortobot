@@ -1,20 +1,36 @@
 <template>
   <TheHeader />
   <div class="text-center">
-    <img alt="Vue logo" src="./assets/logo.png" class="m-auto" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+    <MainPage v-if="user" />
   </div>
 </template>
 
 <script>
+import { getUser } from '@/api/auth'
 import TheHeader from './components/TheHeader.vue'
-import HelloWorld from './components/HelloWorld.vue'
+import MainPage from './components/MainPage.vue'
+import { mapState } from 'vuex'
 
 export default {
   name: 'App',
   components: {
     TheHeader,
-    HelloWorld,
+    MainPage,
+  },
+  computed: mapState(['user']),
+  async beforeCreate() {
+    const urlParams = new URLSearchParams(window.location.search)
+    const token = urlParams.get('token') || localStorage.getItem('token')
+    this.$store.commit('setToken', token)
+
+    if (token) {
+      const user = await getUser()
+      if ('error' in user) {
+        return
+      }
+      this.$store.commit('setUser', user)
+      window.history.replaceState({}, document.title, '/')
+    }
   },
 }
 </script>

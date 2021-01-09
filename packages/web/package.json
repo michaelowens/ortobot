@@ -21,6 +21,7 @@
     "passport": "^0.4.1",
     "passport-twitch-new": "0.0.2",
     "vue": "^3.0.0",
+    "vuex": "^4.0.0-rc.2",
     "webpack-manifest-plugin": "^3.0.0",
     "webpack-node-externals": "^2.5.2"
   },
