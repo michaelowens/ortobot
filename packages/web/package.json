@@ -7,27 +7,30 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint",
-    "pressr": "cross-env SSR=true vue-cli-service build",
-    "ssr": "node src/server.js"
+    "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "@vue/server-renderer": "^3.0.5",
+    "connect-history-api-fallback": "^1.6.0",
     "core-js": "^3.6.5",
-    "cross-env": "^7.0.3",
     "express": "^4.17.1",
+    "passport": "^0.4.1",
+    "passport-twitch": "^1.0.3",
     "vue": "^3.0.0",
     "webpack-manifest-plugin": "^3.0.0",
     "webpack-node-externals": "^2.5.2"
   },
   "devDependencies": {
+    "@tailwindcss/postcss7-compat": "^2.0.2",
     "@vue/cli-plugin-babel": "~4.5.0",
     "@vue/cli-plugin-eslint": "~4.5.0",
     "@vue/cli-service": "~4.5.0",
     "@vue/compiler-sfc": "^3.0.0",
+    "autoprefixer": "^9.8.6",
     "babel-eslint": "^10.1.0",
     "eslint": "^6.7.2",
-    "eslint-plugin-vue": "^7.0.0-0"
+    "eslint-plugin-vue": "^7.0.0-0",
+    "postcss": "^7.0.35",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.2"
   },
   "eslintConfig": {
     "root": true,

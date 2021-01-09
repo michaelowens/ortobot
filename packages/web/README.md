@@ -17,7 +17,6 @@ npm run build
 
 ### SSR version
 ```
-npm run pressr
 npm run ssr
 ```
 
