@@ -1,5 +1,4 @@
 const { resolve } = require('path')
-const bodyParser = require('body-parser')
 const history = require('connect-history-api-fallback')
 const express = require('express')
 const configureAPI = require('./configure')
@@ -12,7 +11,7 @@ configureAPI(app)
 
 // UI
 const publicPath = resolve(__dirname, '../dist')
-const staticConf = { maxAge: '1d', etag: false }
+const staticConf = { maxAge: '1y', etag: false }
 
 app.use(express.static(publicPath, staticConf))
 app.use('/', history())

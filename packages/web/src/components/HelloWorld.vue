@@ -1,7 +1,10 @@
 <template>
   <div class="hello">
     <h1>{{ message }}</h1>
-    <button @click="message = 'Something'">Change message</button>
+    <a href="/api/auth/twitch">Login</a>
+
+    <button @click="apiTest">Test api call</button>
+
     <p>
       For a guide and recipes on how to configure / customize this project,<br />
       check out the
@@ -88,16 +91,39 @@
 </template>
 
 <script>
+import ky from 'ky'
+
 export default {
   name: 'HelloWorld',
-  props: {
-    msg: String,
-  },
   data: () => ({
-    message: '',
+    token: null,
+    user: null,
   }),
+  methods: {
+    async apiTest() {
+      const res = await ky
+        .post('/api/module/test/enable', {
+          hooks: {
+            beforeRequest: [
+              (request) => {
+                if (this.token)
+                  request.headers.set('Authorization', 'Bearer ' + this.token)
+              },
+            ],
+          },
+        })
+        .json()
+      console.log(res)
+    },
+  },
   created() {
-    this.message = this.msg
+    const urlParams = new URLSearchParams(window.location.search)
+    const token = urlParams.get('token')
+
+    if (token) {
+      this.token = token
+      window.history.replaceState({}, document.title, '/')
+    }
   },
 }
 </script>
