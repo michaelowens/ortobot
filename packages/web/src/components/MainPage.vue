@@ -1,7 +1,7 @@
 <template>
   <!-- <a href="#" @click.prevent="apiTest">Test api call</a> -->
   <div
-    class="grid justify-center grid-cols-1 md:grid-cols-2 lg:grid-cols-3 px-8 mx-auto gap-4 max-w-6xl"
+    class="grid justify-center grid-cols-1 md:grid-cols-2 lg:grid-cols-3 px-8 mx-auto gap-6 max-w-6xl"
   >
     <BotModule
       v-for="(mod, key) in modules"
