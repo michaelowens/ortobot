@@ -1,0 +1,10 @@
+{
+  "ibai": {
+    "name": "No ibai",
+    "description": "Ban the word ibai"
+  },
+  "play": {
+    "name": "No !play",
+    "description": "Delete !play messages"
+  }
+}

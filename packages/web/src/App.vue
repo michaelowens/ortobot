@@ -1,6 +1,6 @@
 <template>
   <TheHeader />
-  <div class="text-center">
+  <div>
     <MainPage v-if="user" />
   </div>
 </template>
@@ -36,6 +36,10 @@ export default {
 </script>
 
 <style>
+body {
+  background: #eeeeee;
+}
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
