@@ -1,10 +1,14 @@
 {
   "ibai": {
-    "name": "No ibai",
+    "title": "No ibai",
     "description": "Ban the word ibai"
   },
   "play": {
-    "name": "No !play",
+    "title": "No !play",
     "description": "Delete !play messages"
+  },
+  "caps": {
+    "title": "No caps",
+    "description": "Timeout over-excessive caps usage"
   }
 }
