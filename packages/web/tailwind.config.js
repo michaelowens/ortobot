@@ -4,7 +4,6 @@ module.exports = {
   theme: {
     extend: {
       gridTemplateColumns: {
-        // Simple 16 column grid
         '1': 'repeat(1, minmax(150px, 320px))',
         '2': 'repeat(2, minmax(150px, 320px))',
         '3': 'repeat(3, minmax(150px, 320px))',

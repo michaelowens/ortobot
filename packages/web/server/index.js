@@ -1,13 +1,15 @@
 const { resolve } = require('path')
 const history = require('connect-history-api-fallback')
 const express = require('express')
+const { createServer } = require('http')
 const configureAPI = require('./configure')
 
 const app = express()
+const server = createServer(app)
 const { PORT = 3000 } = process.env
 
 // API
-configureAPI(app)
+configureAPI(app, server)
 
 // UI
 const publicPath = resolve(__dirname, '../dist')

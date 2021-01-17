@@ -4,6 +4,7 @@ const passport = require('passport')
 const twitchStrategy = require('passport-twitch-new').Strategy
 const jwt = require('jsonwebtoken')
 const api = require('./api')
+const wsApi = require('./ws-api')
 
 // I am lazy, probably gonna let the bot update redis with a list of mods
 const mods = ['xikeon', 'ortopilot', 'chibijuice_']
@@ -23,7 +24,18 @@ const mods = ['xikeon', 'ortopilot', 'chibijuice_']
 //   provider: 'twitch'
 // }
 
-module.exports = (app) => {
+module.exports = (app, server) => {
+  let io
+  app.use((req, res, next) => {
+    if (!io) {
+      console.log('Set up socket io')
+      const server = req.connection.server;
+      io = require('socket.io')(server, { serveClient: false });
+      wsApi(io)
+    }
+    next();
+  })
+
   app.use(passport.initialize())
 
   passport.use(

@@ -9,28 +9,43 @@
       :name="key"
       :title="mod.title"
       :description="mod.description"
+      :enabled="mod.enabled"
     />
   </div>
 </template>
 
 <script>
-import { enable } from '@/api/module'
+import io from 'socket.io-client'
+import { all } from '@/api/module'
 import BotModule from './BotModule.vue'
-import modules from '@/config/modules'
+// import modules from '@/config/modules'
 
 export default {
   name: 'MainPage',
   components: { BotModule },
   data: () => ({
-    modules,
+    modules: [],
+    socket: null
   }),
   methods: {
     async apiTest() {
-      const res = await enable('test')
-      console.log('Api test response:')
-      console.log(res)
+      // const res = await enable('test')
+      // console.log('Api test response:')
+      // console.log(res)
     },
   },
+  async created() {
+    this.modules = await all()
+
+    this.socket = io()
+    this.socket.on("connect", () => {
+      console.log('Socket.io connected', this.socket.id);
+    })
+    this.socket.on('module:status', data => {
+      this.modules[data.name].enabled = data.enabled
+      console.log('module:status', data)
+    })
+  }
 }
 </script>
 

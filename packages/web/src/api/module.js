@@ -1,11 +1,13 @@
 import api from './index'
 
+export const all = async () => {
+  return await api('modules').json()
+}
+
 export const enable = async (name) => {
-  const res = await api.post(`module/${name}/enable`).json()
-  return res
+  return await api.post(`module/${name}/enable`).json()
 }
 
 export const disable = async (name) => {
-  const res = await api.post(`module/${name}/disable`).json()
-  return res
+  return await api.post(`module/${name}/disable`).json()
 }

@@ -13,6 +13,7 @@
     <div>
       <button
         class="bg-gray-600 hover:bg-gray-500 active:bg-gray-800 text-white px-6 py-2 rounded-md mt-4"
+        @click="toggle"
       >
         {{ buttonText }}
       </button>
@@ -21,16 +22,21 @@
 </template>
 
 <script>
+import { enable, disable } from '@/api/module'
+
 export default {
-  props: ['name', 'title', 'description'],
-  data: () => ({
-    enabled: false,
-  }),
+  props: ['name', 'title', 'description', 'enabled'],
   computed: {
     buttonText() {
       return this.enabled ? 'Disable' : 'Enable'
     },
   },
+  methods: {
+    toggle() {
+      if (!this.enabled) enable(this.name)
+      else disable(this.name)
+    }
+  }
 }
 </script>
 
