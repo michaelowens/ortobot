@@ -3,7 +3,7 @@ const auth = require('./middleware/auth')
 const router = express.Router()
 const modules = require('./config/modules')
 const redis = require("redis");
-const client = redis.createClient();
+const client = redis.createClient({ url: process.env.REDIS_URL || null });
 
 router.get('/', function(req, res) {
   res.json({ text: 'Hello World!' })

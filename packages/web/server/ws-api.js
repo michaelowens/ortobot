@@ -1,5 +1,5 @@
 const redis = require('redis')
-const subscriber = redis.createClient();
+const subscriber = redis.createClient({ url: process.env.REDIS_URL || null });
 
 module.exports = (io) => {
   subscriber.on('message', (channel, msg) => {
