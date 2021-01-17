@@ -4,11 +4,11 @@ const extend = require('extend')
 let options = {}
 let defaults = {
   bot: {
-    name: 'xikbot',
-    oauth: 'oauth:',
-    channel: 'xikeon',
+    name: process.env.TWITCH_USERNAME || 'xikbot',
+    oauth: process.env.TWITCH_OAUTH || 'oauth:',
+    channel: process.env.TWITCH_CHANNEL || 'xikeon',
   },
-  modules: ['ibai'],
+  modules: ['ibai', 'play'],
 }
 
 let optionsFile = {}

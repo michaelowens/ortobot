@@ -1,3 +1,4 @@
+require('dotenv').config()
 const initDI = require('./service/di')
 
 module.exports = bot
