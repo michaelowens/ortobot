@@ -7,6 +7,6 @@ bluebird.promisifyAll(redis.Multi.prototype)
 module.exports = class Database {
   constructor({ settings }) {
     console.log('Connecting to database')
-    return redis.createClient(settings.redis || {})
+    return redis.createClient(settings.redis || { url: process.env.REDIS_URL || null })
   }
 }
