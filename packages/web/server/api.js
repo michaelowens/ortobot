@@ -16,7 +16,7 @@ router.post('/auth', auth, (req, res) => {
 router.get('/modules', auth, (req, res) => {
   client.hgetall('module:status', (err, result) => {
     for (let mod in modules) {
-      modules[mod].enabled = mod in result ? result[mod] === 'true' : false
+      modules[mod].enabled = result && result[mod] === 'true'
     }
   
     res.json(modules)
