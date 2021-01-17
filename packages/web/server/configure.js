@@ -43,7 +43,7 @@ module.exports = (app, server) => {
       {
         clientID: process.env.TWITCH_CLIENT_ID,
         clientSecret: process.env.TWITCH_CLIENT_SECRET,
-        callbackURL: 'http://localhost:8080/api/auth/twitch/callback',
+        callbackURL: process.env.TWITCH_CALLBACK || 'http://localhost:8080/api/auth/twitch/callback',
         scope: 'user_read',
       },
       function(accessToken, refreshToken, user, done) {
