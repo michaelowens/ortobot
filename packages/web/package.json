@@ -8,7 +8,8 @@
     "serve": "nodemon --exec 'vue-cli-service serve'",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "server": "node server"
+    "server": "node server",
+    "start": "npm run server"
   },
   "dependencies": {
     "connect-history-api-fallback": "^1.6.0",
