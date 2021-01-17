@@ -1,5 +1,4 @@
 <template>
-  <!-- <a href="#" @click.prevent="apiTest">Test api call</a> -->
   <div
     class="grid justify-center grid-cols-1 md:grid-cols-2 lg:grid-cols-3 px-8 mx-auto gap-6 max-w-6xl"
   >
@@ -18,7 +17,6 @@
 import io from 'socket.io-client'
 import { all } from '@/api/module'
 import BotModule from './BotModule.vue'
-// import modules from '@/config/modules'
 
 export default {
   name: 'MainPage',
@@ -27,13 +25,6 @@ export default {
     modules: [],
     socket: null
   }),
-  methods: {
-    async apiTest() {
-      // const res = await enable('test')
-      // console.log('Api test response:')
-      // console.log(res)
-    },
-  },
   async created() {
     this.modules = await all()
 

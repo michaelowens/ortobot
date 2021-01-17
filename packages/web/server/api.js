@@ -1,7 +1,7 @@
 const express = require('express')
 const auth = require('./middleware/auth')
 const router = express.Router()
-const modules = require('../src/config/modules')
+const modules = require('./config/modules')
 const redis = require("redis");
 const client = redis.createClient();
 
