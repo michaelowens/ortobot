@@ -25,7 +25,7 @@ module.exports = class PlayModule {
     }
 
     if (data.message.match(/^!play/i)) {
-      this.chat.client.say(data.channel, '/delete ' + data.messageID)
+      this.chat.client.privmsg(data.channel, '/delete ' + data.messageID)
       return
     }
   }
