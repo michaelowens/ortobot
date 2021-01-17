@@ -1,2 +1,2 @@
-bot=packages/bot
-web=packages/web
+ortobot=packages/bot
+ortobot-web=packages/web
