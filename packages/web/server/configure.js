@@ -48,6 +48,9 @@ module.exports = (app, server) => {
       },
       function(accessToken, refreshToken, user, done) {
         api.database.lpos('mods', user.login, (err, result) => {
+          console.log('lpos done', err)
+          console.log(result)
+          console.log(user)
           if (result === null) {
             err = 'Could not authenticate'
           }
