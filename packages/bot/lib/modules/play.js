@@ -8,7 +8,6 @@ module.exports = class PlayModule {
   }
 
   async onMessage(data) {
-    console.log('play', data)
     if (data.isMod) {
       if (data.message === 'noplayon') {
         console.log('No !play allowed')
