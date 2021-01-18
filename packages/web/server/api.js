@@ -29,6 +29,7 @@ router.post('/module/:name/:action', auth, (req, res) => {
   }
   database.hmset('module:status', [req.params.name, req.params.action === 'enable'], (err, result) => {
     if (!err) {
+      console.log(req.user.login, req.params.action + 'd', req.params.name + 'Module')
       database.publish('modules', JSON.stringify({
         name: req.params.name,
         enabled: req.params.action === 'enable'
