@@ -47,9 +47,12 @@ module.exports = (app, server) => {
         scope: 'user_read',
       },
       function(accessToken, refreshToken, user, done) {
-        if (mods.includes(user.login)) {
-          return done(null, user)
-        }
+        api.database.lpos('mods', user.login, (err, result) => {
+          if (result === null) {
+            err = 'Could not authenticate'
+          }
+          return done(err, err ? user : null)
+        })
       }
     )
   )
@@ -62,8 +65,8 @@ module.exports = (app, server) => {
     done(null, user)
   })
 
-  api.get('/auth/twitch', passport.authenticate('twitch'))
-  api.get(
+  api.router.get('/auth/twitch', passport.authenticate('twitch'))
+  api.router.get(
     '/auth/twitch/callback',
     passport.authenticate('twitch', {
       failureRedirect: '/',
@@ -77,5 +80,5 @@ module.exports = (app, server) => {
   )
 
   app.use(bodyParser.json())
-  app.use('/api', api)
+  app.use('/api', api.router)
 }

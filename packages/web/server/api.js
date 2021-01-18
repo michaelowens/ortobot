@@ -3,7 +3,7 @@ const auth = require('./middleware/auth')
 const router = express.Router()
 const modules = require('./config/modules')
 const redis = require("redis");
-const client = redis.createClient({ url: process.env.REDIS_URL || null });
+const database = redis.createClient({ url: process.env.REDIS_URL || null });
 
 router.get('/', function(req, res) {
   res.json({ text: 'Hello World!' })
@@ -14,7 +14,7 @@ router.post('/auth', auth, (req, res) => {
 })
 
 router.get('/modules', auth, (req, res) => {
-  client.hgetall('module:status', (err, result) => {
+  database.hgetall('module:status', (err, result) => {
     for (let mod in modules) {
       modules[mod].enabled = result && result[mod] === 'true'
     }
@@ -27,10 +27,10 @@ router.post('/module/:name/:action', auth, (req, res) => {
   if (!modules[req.params.name]) {
     return res.json({success: false})
   }
-  client.hmset('module:status', [req.params.name, req.params.action === 'enable'], (err, result) => {
+  database.hmset('module:status', [req.params.name, req.params.action === 'enable'], (err, result) => {
     if (!err) {
-      client.publish('modules', JSON.stringify({
-        name:req.params.name,
+      database.publish('modules', JSON.stringify({
+        name: req.params.name,
         enabled: req.params.action === 'enable'
       }))
     }
@@ -39,4 +39,4 @@ router.post('/module/:name/:action', auth, (req, res) => {
   })
 })
 
-module.exports = router
+module.exports = { router, database }
