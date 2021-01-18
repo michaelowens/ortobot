@@ -4,7 +4,7 @@
 
 ## Usage
 
-1. Copy `settings.json.example` to `settings.json`
+1. Copy `.env.example` to `.env`, or pass environment variables
 2. run `npm i` to install dependencies
 3. `npm start`
 
