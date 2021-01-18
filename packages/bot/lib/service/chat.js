@@ -58,7 +58,7 @@ module.exports = class ChatService {
 
 
     if (timer) {
-      setTimeout(() => this.updateMods(), 12 * 60 * 60)
+      setTimeout(() => this.updateMods(), 12 * 60 * 60 * 1000)
     }
   }
 
