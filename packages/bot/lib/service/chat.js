@@ -27,13 +27,39 @@ module.exports = class ChatService {
     this.client.join(this.settings.bot.channel)
 
     this.client
-      .on('ready', () => console.log('Successfully connected to chat'))
+      .on('ready', () => {
+        console.log('Successfully connected to chat')
+        this.updateMods()
+      })
       .on('PRIVMSG', (msg) => {
         if (msg.senderUsername === this.settings.bot.name.toLowerCase()) {
           return
         }
         this.handleMessage(msg)
       })
+  }
+
+  async updateMods(timer = true) {
+    const mods = await this.client.getMods(this.settings.bot.channel)
+    mods.push(this.settings.bot.channel)
+
+    // TODO: clear the modlist
+    const multi = this.db.multi()
+    multi.del('mods')
+    mods.forEach(mod => multi.rpush('mods', mod))
+
+    multi.exec((err, res) => {
+      if (err) {
+        return console.log('Error while updating mods:', err)
+      }
+
+      console.log('Updated mod list')
+    })
+
+
+    if (timer) {
+      setTimeout(() => this.updateMods(), 12 * 60 * 60)
+    }
   }
 
   /**

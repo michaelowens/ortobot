@@ -1,8 +1,3 @@
 {
-  "bot": {
-    "name": "xikbot",
-    "oauth": "oauth:",
-    "channel": "xikeon"
-  },
-  "modules": ["ibai"]
+  "modules": ["ibai", "play"]
 }
