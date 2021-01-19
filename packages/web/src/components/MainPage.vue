@@ -26,11 +26,11 @@ export default {
     socket: null
   }),
   async created() {
-    this.modules = await all()
+    // this.modules = await all()
 
     this.socket = io()
-    this.socket.on("connect", () => {
-      console.log('Socket.io connected', this.socket.id);
+    this.socket.on("connect", async () => {
+      this.modules = await all()
     })
     this.socket.on('module:status', data => {
       this.modules[data.name].enabled = data.enabled
