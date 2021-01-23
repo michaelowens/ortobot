@@ -46,7 +46,7 @@ module.exports = class ChatService {
     // TODO: clear the modlist
     const multi = this.db.multi()
     multi.del('mods')
-    mods.forEach(mod => multi.rpush('mods', mod))
+    mods.forEach((mod) => multi.rpush('mods', mod))
 
     multi.exec((err, res) => {
       if (err) {
@@ -55,7 +55,6 @@ module.exports = class ChatService {
 
       console.log('Updated mod list')
     })
-
 
     if (timer) {
       setTimeout(() => this.updateMods(), 12 * 60 * 60 * 1000)
@@ -78,6 +77,7 @@ module.exports = class ChatService {
       user: msg.senderUsername,
       displayName: msg.displayName, // new User()
       isMod: msg.isMod,
+      emotes: msg.emotes,
     }
     this.events.emit('message', data)
 

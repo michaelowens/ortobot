@@ -26,6 +26,7 @@
     "dank-twitch-irc": "^4.2.0",
     "dotenv": "^8.2.0",
     "extend": "^3.0.2",
+    "got": "^11.8.1",
     "node-cache": "^5.1.2",
     "redis": "^3.0.2"
   }
