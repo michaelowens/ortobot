@@ -91,7 +91,12 @@ module.exports = class CapsModule {
       )
 
       await this.chat.client
-        .timeout(data.channel, data.user, timeout)
+        .timeout(
+          data.channel,
+          data.user,
+          timeout,
+          "Please don't overuse CAPS or spam emoji. Thank you!"
+        )
         .catch((e) => console.log('oopsie, could not timeout'))
     }
   }
