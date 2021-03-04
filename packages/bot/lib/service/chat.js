@@ -31,6 +31,14 @@ module.exports = class ChatService {
         console.log('Successfully connected to chat')
         this.updateMods()
       })
+      .on('close', (error) => {
+        console.log('CLOSE EVENT:')
+        console.log(error)
+      })
+      .on('error', (error) => {
+        console.log('ERROR EVENT:')
+        console.log(error)
+      })
       .on('PRIVMSG', (msg) => {
         if (msg.senderUsername === this.settings.bot.name.toLowerCase()) {
           return
