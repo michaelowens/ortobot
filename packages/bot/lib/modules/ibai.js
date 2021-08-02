@@ -1,20 +1,14 @@
 module.exports = class IbaiModule {
-  constructor({ chat, modules }) {
+  constructor({ chat }) {
     this.chat = chat
-    this.modules = modules
     this.events = {
       message: this.onMessage,
     }
-    this.timeouts = {}
   }
 
   async onMessage(data) {
     if (data.message.match(/^[l|i]ba+[l|i]+$/i)) {
-      console.log(
-        'Banned:',
-        data.user,
-        `(${1 + Math.log(this.timeouts[data.user]) / Math.log(8)}x)`
-      )
+      console.log('Banned:', data.user)
 
       await this.chat.client
         .ban(data.channel, data.user, 'Ibai spam')
