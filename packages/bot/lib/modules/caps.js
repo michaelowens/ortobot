@@ -80,7 +80,7 @@ module.exports = class CapsModule {
       }
 
       const timeoutCount = 1 + Math.log(this.timeouts[data.user]) / Math.log(4)
-      const timeout = 60 * this.timeouts[data.user]
+      const timeout = 10 * this.timeouts[data.user]
 
       console.log(
         'Timed out:',
