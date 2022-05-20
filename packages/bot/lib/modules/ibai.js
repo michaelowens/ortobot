@@ -30,7 +30,12 @@ module.exports = class IbaiModule {
         delete this.timeouts[data.user]
       } else {
         await this.chat.client
-          .timeout(data.channel, data.user, 60 * this.timeouts[data.user])
+          .timeout(
+            data.channel,
+            data.user,
+            60 * this.timeouts[data.user],
+            'Ibai spam'
+          )
           .catch((e) => console.log('oopsie, could not timeout'))
       }
     }
